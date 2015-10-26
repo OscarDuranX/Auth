@@ -11,11 +11,19 @@
 |
 */
 
-Route::get('/', function () {
+
+
+Route::get(/**
+ * @return \Illuminate\View\View
+ */
+    '/', function () {
     return view('welcome');
 });
 
-Route::get('/home', ['as' => 'auth.home', function () { return view('home'); }]);
+Route::get('/home', ['as' => 'auth.home', /**
+ * @return \Illuminate\View\View
+ */
+    function () { return view('home'); }]);
 
 Route::get('/login',['as' => 'auth.login' , 'uses' => 'LoginController@getLogin']);
 Route::post('/postLogin',['as' => 'auth.postLogin' , 'uses' => 'LoginController@postLogin']);
@@ -24,7 +32,10 @@ Session::get('authenticate');
 
 
 
-Route::get('/resource', function (){
+Route::get(/**
+ * @return \Illuminate\View\View
+ */
+    '/resource', function (){
 
     $authenticated= false;
     //dd(Session::all());
