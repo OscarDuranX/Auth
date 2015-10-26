@@ -38,26 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Login</div>
-
-                <form method="post" action="{{route('auth.postLogin')}}">
-                    {!! csrf_field() !!}}
-                    <div class="form-grup">
-                        <label>Usuari</label>
-                        <input type="email" class="form-control"  id="email" name="email" required/>
-                    </div>
-                    <div class="form-grup">
-                        <label>Password</label>
-                        <input type="password" class="form-control"  id="password" name="password" required/>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox">Remember me</label>
-                    </div>
-
-                    <button type="submit" class="btn btn-default">Login</button>
-                    <button type="reset" class="btn btn-default">Reset</button>
-
-                </form>
+                <div class="title">HOME</div>
             </div>
         </div>
     </body>

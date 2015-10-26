@@ -15,12 +15,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', ['as' => 'auth.home', function () { return view('home'); }]);
+
+Route::get('/login',['as' => 'auth.login' , 'uses' => 'LoginController@getLogin']);
+Route::post('/postLogin',['as' => 'auth.postLogin' , 'uses' => 'LoginController@postLogin']);
+
+Session::get('authenticate');
+
+
+
 Route::get('/resource', function (){
 
     $authenticated= false;
     //dd(Session::all());
-    Session::set('authenticated', true);
-    \Debugbar::starMeasure("pepito1");
+    Session::set('authenticated', false);
+    // \Debugbar::starMeasure("pepito1");
    // \Debugbar::info("Xivato 1!!");
   //  \Debugbar::info(Session::all());
     if(Session::has('authenticated')) {
@@ -31,7 +40,7 @@ Route::get('/resource', function (){
 
 
     if($authenticated){
-        \Debugbar::stopMeasure("pepito1");
+       // \Debugbar::stopMeasure("pepito1");
         return view('resource');
     }else{
         return view('login');
