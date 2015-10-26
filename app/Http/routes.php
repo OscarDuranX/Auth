@@ -15,10 +15,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/resource', function () {
+Route::get('/resource', function (){
 
-    $authenticated = false;
+    $authenticated= false;
+    //dd(Session::all());
+    Session::set('authenticated', true);
+    \Debugbar::starMeasure("pepito1");
+   // \Debugbar::info("Xivato 1!!");
+  //  \Debugbar::info(Session::all());
+    if(Session::has('authenticated')) {
+        if(Session::get('authenticated') ==true){
+            $authenticated = true;
+        }
+}
+
+
     if($authenticated){
+        \Debugbar::stopMeasure("pepito1");
         return view('resource');
     }else{
         return view('login');
