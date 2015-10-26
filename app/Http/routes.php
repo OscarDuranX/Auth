@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/resource', function () {
+
+    $authenticated = false;
+    if($authenticated){
+        return view('resource');
+    }else{
+        return view('login');
+    }
+
+});
+
