@@ -12,6 +12,8 @@
 */
 
 
+Route::get('/carrot','CarrotController@getCarrot');
+
 
 Route::get(/**
  * @return \Illuminate\View\View
