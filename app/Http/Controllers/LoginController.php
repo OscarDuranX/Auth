@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\User;
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use Hash;
 
 
 /**
@@ -48,6 +49,27 @@ class LoginController extends Controller
      */
     public function login($email,$password)
     {
-        return true;
+//        $user = User::findOrFail(id);
+//          //$user = User::all();
+
+        $user = User::where('email',$email)->first();
+
+        /*if($user->password == bcrypt($password)){
+            return true;
+        } else{
+            return false;
+        }*/
+        if($user) {
+
+            if (Hash::check($password, $user->password)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+
     }
 }

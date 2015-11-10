@@ -51,13 +51,14 @@
                         <input type="password" class="form-control"  id="password" name="password" required/>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox">Remember me</label>
+                        <label><input type="checkbox" name="remember">Remember me</label>
                     </div>
 
-                    <button type="submit" class="btn btn-default">Login</button>
+                    <button type="submit" id="login" class="btn btn-default">Login</button>
                     <button type="reset" class="btn btn-default">Reset</button>
 
                 </form>
+                <a id="Register" href="{{route('auth.register')}}">Registrat</a>
             </div>
         </div>
     </body>

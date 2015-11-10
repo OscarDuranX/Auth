@@ -22,26 +22,36 @@ Route::get(/**
     return view('welcome');
 });
 
-Route::get('/home', ['as' => 'auth.home', /**
- * @return \Illuminate\View\View
- */
-    function () { return view('home'); }]);
+Route::get('/home',
+    [
+        'as' => 'auth.home',
+        function () { return view('home'); }
+    ]);
 
-Route::get('/login',['as' => 'auth.login' , 'uses' => 'LoginController@getLogin']);
-Route::post('/postLogin',['as' => 'auth.postLogin' , 'uses' => 'LoginController@postLogin']);
+Route::get('/login',
+    [
+        'as' => 'auth.login' ,
+        'uses' => 'LoginController@getLogin'
+    ]);
+
+Route::post('/postLogin',[
+    'as' => 'auth.postLogin' ,
+    'uses' => 'LoginController@postLogin']);
 
 Session::get('authenticate');
 
+Route::get('/forceLogout', function(){
+
+   Session::flush();
+});
 
 
-Route::get(/**
- * @return \Illuminate\View\View
- */
-    '/resource', function (){
+
+Route::get('/resource', function (){
 
     $authenticated= false;
     //dd(Session::all());
-    Session::set('authenticated', false);
+    //Session::set('authenticated', false);
     // \Debugbar::starMeasure("pepito1");
    // \Debugbar::info("Xivato 1!!");
   //  \Debugbar::info(Session::all());
@@ -56,8 +66,12 @@ Route::get(/**
        // \Debugbar::stopMeasure("pepito1");
         return view('resource');
     }else{
-        return view('login');
+        return redirect()->route('auth.login');
     }
 
 });
+
+Route::get('/register',['as' => 'auth.register' ,
+        'uses' => 'RegisterController@getRegister'
+]);
 
