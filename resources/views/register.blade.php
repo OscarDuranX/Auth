@@ -37,27 +37,35 @@
 </head>
 <body>
 <div class="container">
-    <div class="content">
-        <div class="title">Register</div>
+    <div class="row">
 
-        <form method="post" action="{{route('auth.postLogin')}}">
-            {!! csrf_field() !!}}
-            <div class="form-grup">
-                <label>Usuari</label>
-                <input type="email" class="form-control"  id="email" name="email" required/>
-            </div>
-            <div class="form-grup">
-                <label>Password</label>
-                <input type="password" class="form-control"  id="password" name="password" required/>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="remember">Remember me</label>
-            </div>
+        <div class="col-sm-9 text-left">
+            <div class="title text-left">Register</div>
 
-            <button type="submit" id="login" class="btn btn-default">Register</button>
-            <button type="reset" class="btn btn-default">Reset</button>
+            <form method="post" action="{{route('auth.postRegister')}}">
+                {!! csrf_field() !!}}
+                <div class="form-grup">
+                    <label>Nom</label>
+                    <input type="text" class="form-control"  id="name" name="name" required maxlength="20"/>
+                </div>
+                <div class="form-grup">
+                    <label>Usuari</label>
+                    <input type="text" class="form-control"  id="user" name="user" required maxlength="30"/>
+                </div>
+                <div class="form-grup">
+                    <label>Correu</label>
+                    <input type="email" class="form-control"  id="email" name="email" required/>
+                </div>
+                <div class="form-grup">
+                    <label>Password</label>
+                    <input type="password" class="form-control"  id="password" name="password" required maxlength="20"/>
+                </div>
 
-        </form>
+
+                <button type="submit" id="login" class="btn btn-default">Register</button>
+
+            </form>
+        </div>
 
     </div>
 </div>

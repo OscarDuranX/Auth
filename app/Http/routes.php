@@ -75,3 +75,7 @@ Route::get('/register',['as' => 'auth.register' ,
         'uses' => 'RegisterController@getRegister'
 ]);
 
+Route::post('/register',['as' => 'auth.postRegister' ,
+    'uses' => 'RegisterController@postRegister'
+]);
+

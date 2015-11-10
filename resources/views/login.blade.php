@@ -40,7 +40,7 @@
             <div class="content">
                 <div class="title">Login</div>
 
-                <form method="post" action="{{route('auth.postLogin')}}">
+                <form method="post" action="{{route('auth.postLogin')}}" class="form-inline">
                     {!! csrf_field() !!}}
                     <div class="form-grup">
                         <label>Usuari</label>
