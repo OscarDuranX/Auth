@@ -42,23 +42,40 @@
         <div class="col-sm-9 text-left">
             <div class="title text-left">Register</div>
 
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form method="post" action="{{route('auth.postRegister')}}">
                 {!! csrf_field() !!}}
                 <div class="form-grup">
-                    <label>Nom</label>
-                    <input type="text" class="form-control"  id="name" name="name" required maxlength="20"/>
+                    <label for="name">Nom</label>
+                    <input type="text" class="form-control"  id="name" name="name" required maxlength="20" placeholder="El tenu nom aquí"
+                           value="{{old('email')}}"/>
                 </div>
                 <div class="form-grup">
-                    <label>Usuari</label>
-                    <input type="text" class="form-control"  id="user" name="user" required maxlength="30"/>
+                    <label for="username">Usuari</label>
+                    <input type="text" class="form-control"  id="user" name="user" required maxlength="30" placeholder="El tenu nom aquí"
+                           value="{{old('username')}}/>
                 </div>
                 <div class="form-grup">
-                    <label>Correu</label>
-                    <input type="email" class="form-control"  id="email" name="email" required/>
+                    <label for="email">Correu</label>
+                    <input type="email" class="form-control"  id="email" name="email" required
+                           value="{{old('email')}}/>
                 </div>
                 <div class="form-grup">
-                    <label>Password</label>
+                    <label for="password">Password</label>
                     <input type="password" class="form-control"  id="password" name="password" required maxlength="20"/>
+                </div>
+                <div class="form-grup">
+                    <label for="password_confirmation">Confirma Password</label>
+                    <input type="Password" class="form-control"  id="confirmaPassword" name="confirmaPassword" required maxlength="20"/>
                 </div>
 
 
