@@ -53,7 +53,7 @@
             @endif
 
             <form method="post" action="{{route('auth.postRegister')}}">
-                {!! csrf_field() !!}}
+                {!! csrf_field() !!}
                 <div class="form-grup">
                     <label for="name">Nom</label>
                     <input type="text" class="form-control"  id="name" name="name" required maxlength="20" placeholder="El tenu nom aquí"
@@ -61,21 +61,26 @@
                 </div>
                 <div class="form-grup">
                     <label for="username">Usuari</label>
-                    <input type="text" class="form-control"  id="user" name="user" required maxlength="30" placeholder="El tenu nom aquí"
-                           value="{{old('username')}}/>
+                    <input type="text" class="form-control"  id="user" name="user" required maxlength="30" placeholder="El tenu nom d'usuari"
+                           value="{{old('user')}}"/>
                 </div>
                 <div class="form-grup">
                     <label for="email">Correu</label>
-                    <input type="email" class="form-control"  id="email" name="email" required
-                           value="{{old('email')}}/>
+                    <input type="email" class="form-control"  id="email" name="email" requiredç
+                           placeholder="Correu"
+                           value="{{old('email')}}"/>
                 </div>
                 <div class="form-grup">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control"  id="password" name="password" required maxlength="20"/>
+                    <input type="password" class="form-control"  id="password" name="password" required maxlength="20"
+                           placeholder="Contrasenya"
+                    />
                 </div>
                 <div class="form-grup">
                     <label for="password_confirmation">Confirma Password</label>
-                    <input type="Password" class="form-control"  id="confirmaPassword" name="confirmaPassword" required maxlength="20"/>
+                    <input type="Password" class="form-control"  id="confirmaPassword" name="confirmaPassword" required maxlength="20"
+                           placeholder="Repeteig contrasenya"
+                    />
                 </div>
 
 

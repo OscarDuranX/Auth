@@ -6,8 +6,6 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Input;
 
 
 class RegisterController extends Controller
@@ -20,11 +18,11 @@ class RegisterController extends Controller
     public function postRegister(Request $request)
     {
 
-       // dd(Input::all());
+       //dd(Input::all());
 
         $this->validate($request, [
                 'name' => 'required|max:40',
-                'email' => 'required|email|unique',
+                'email' => 'required|email|unique:users,email',
                 'password' => 'required|confirmed'
         ]);
 
@@ -37,7 +35,7 @@ class RegisterController extends Controller
 
         $user->save();
 
-        return redirect()->route('auth.login');
+        //return redirect()->route('auth.login');
 
         //User::create(Input::all());
 

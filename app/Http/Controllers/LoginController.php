@@ -26,10 +26,16 @@ class LoginController extends Controller
         //\Debugbar::info("Entra postlogin");
         //echo "prova";
 
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
         if($this->login($request->email, $request->password)){
             //REDIRECT TO HOME
             return redirect()->route('auth.home');
         }else{
+            $request->session()->flash('login_error', 'Login Incorrecte');
             return redirect()->route('auth.login');
             //REDIRECT BACK
         }

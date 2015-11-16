@@ -39,16 +39,33 @@
         <div class="container">
             <div class="content">
                 <div class="title">Login</div>
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                @if (Session::has('login_error'))
+                    <div class="alert alert-danger">
+                        <ul>
+                           {{ Session::get('login_error') }}
+                        </ul>
+                    </div>
+                @endif
 
                 <form method="post" action="{{route('auth.postLogin')}}" class="form-inline">
-                    {!! csrf_field() !!}}
+                    {!! csrf_field() !!}
                     <div class="form-grup">
                         <label>Usuari</label>
-                        <input type="email" class="form-control"  id="email" name="email" required/>
+                        <input type="email" class="form-control" value="{{old('email')}}" id="email" name="email" required placeholder="Correu"/>
                     </div>
                     <div class="form-grup">
                         <label>Password</label>
-                        <input type="password" class="form-control"  id="password" name="password" required/>
+                        <input type="password" class="form-control"  id="password" name="password" required placeholder="Password"/>
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" name="remember">Remember me</label>
