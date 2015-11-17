@@ -4,6 +4,8 @@
     <title>Laravel</title>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/app.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/all.css') }}" rel="stylesheet" type="text/css">
 
     <style>
         html, body {
@@ -37,10 +39,10 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
+    <div class="content">
 
-        <div class="col-sm-9 text-left">
-            <div class="title text-left">Register</div>
+        <div class="col-sm-9">
+            <div class="title">Register</div>
 
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
@@ -54,10 +56,13 @@
 
             <form method="post" action="{{route('auth.postRegister')}}">
                 {!! csrf_field() !!}
-                <div class="form-grup">
+                <div class="form-grup" id="emailFormGroup">
                     <label for="name">Nom</label>
                     <input type="text" class="form-control"  id="name" name="name" required maxlength="20" placeholder="El tenu nom aquí"
-                           value="{{old('email')}}"/>
+                           value="{{old('email')}}"
+                            v-on:onblur="checkEmailExists"
+                    />
+                    <div v-show="exist"> Email ja existeix!</div>
                 </div>
                 <div class="form-grup">
                     <label for="username">Usuari</label>
@@ -84,12 +89,15 @@
                 </div>
 
 
-                <button type="submit" id="login" class="btn btn-default">Register</button>
+                <button type="submit" id="login" class="btn btn-primary">Register</button>
+                <button id="reset" class="btn btn-primary">Reset</button>
 
             </form>
         </div>
 
     </div>
 </div>
+<script src="{{ asset('js/all.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
