@@ -65,10 +65,14 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email address:</label>
+
+
                     <input type="email" class="form-control" id="email" name="email"
-                           placeholder="myemail@example.com"
+                           placeholder="@{{ placeholder }}"
                            value="{{ old('email') }}"
-                           required>
+                           required
+                           v-on:blur="checkEmailExists"
+                           >
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>

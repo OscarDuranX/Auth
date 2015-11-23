@@ -84,3 +84,7 @@ Route::post('/register',['as' => 'auth.postRegister' ,
     'uses' => 'RegisterController@postRegister'
 ]);
 
+Route::post('/checkEmailExists',['as' => 'auth.checkEmailExists' ,
+    'uses' => 'ApiController@checkEmailExists'
+]);
+
