@@ -16,4 +16,7 @@ elixir(function(mix) {
     mix.less('admin-lte/AdminLTE.less');
     mix.less('bootstrap/bootstrap.less');
     mix.browserify('main.js');
+    mix.sass('app.scss');
+    mix.phpUnit();
+
 });

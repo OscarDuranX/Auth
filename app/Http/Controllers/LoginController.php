@@ -7,6 +7,9 @@ use App\User;
 use Illuminate\Http\Request;
 use Hash;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
 
 /**
  * Class LoginController
@@ -31,13 +34,23 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        if($this->login($request->email, $request->password)){
-            //REDIRECT TO HOME
+//        if($this->login($request->email, $request->password)){
+//            //REDIRECT TO HOME
+//            //Session::set('authenticated',true);
+//
+//            return redirect()->route('auth.home');
+//        }else{
+//            $request->session()->flash('login_error', 'Login Incorrecte');
+//            return redirect()->route('auth.login');
+//            //REDIRECT BACK
+//        }
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Authentication passed...
             return redirect()->route('auth.home');
+            //return redirect()->intended('auth.home');
         }else{
-            $request->session()->flash('login_error', 'Login Incorrecte');
             return redirect()->route('auth.login');
-            //REDIRECT BACK
         }
     }
 
@@ -53,29 +66,29 @@ class LoginController extends Controller
      * @param $password
      * @return bool
      */
-    public function login($email,$password)
-    {
-//        $user = User::findOrFail(id);
-//          //$user = User::all();
-
-        $user = User::where('email',$email)->first();
-
-        /*if($user->password == bcrypt($password)){
-            return true;
-        } else{
-            return false;
-        }*/
-        if($user) {
-
-            if (Hash::check($password, $user->password)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        else {
-            return false;
-        }
-
-    }
+//    public function login($email,$password)
+//    {
+////        $user = User::findOrFail(id);
+////          //$user = User::all();
+//
+//        $user = User::where('email',$email)->first();
+//
+//        /*if($user->password == bcrypt($password)){
+//            return true;
+//        } else{
+//            return false;
+//        }*/
+//        if($user) {
+//
+//            if (Hash::check($password, $user->password)) {
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        }
+//        else {
+//            return false;
+//        }
+//
+//    }
 }

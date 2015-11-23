@@ -10328,6 +10328,13 @@ new Vue({
     el: '#emailFormGroup',
     data: {
         exist: false
+    },
+    methods: {
+        checkEmailExists: function checkEmailExists(event) {
+            alert('Xivato');
+            this.exist = false;
+        }
+
     }
 });
 

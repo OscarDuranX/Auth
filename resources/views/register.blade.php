@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <title>Laravel</title>
 
@@ -54,44 +54,33 @@
                 </div>
             @endif
 
-            <form method="post" action="{{route('auth.postRegister')}}">
+            <form method="post" action="{{ route('auth.postRegister') }}">
                 {!! csrf_field() !!}
-                <div class="form-grup" id="emailFormGroup">
-                    <label for="name">Nom</label>
-                    <input type="text" class="form-control"  id="name" name="name" required maxlength="20" placeholder="El tenu nom aquí"
-                           value="{{old('email')}}"
-                            v-on:onblur="checkEmailExists"
-                    />
-                    <div v-show="exist"> Email ja existeix!</div>
+                <div class="form-group">
+                    <label for="name">User name:</label>
+                    <input type="text" class="form-control" id="name" name="name"
+                           placeholder="El teu nom aquí"
+                           value="{{ old('name') }}"
+                           required>
                 </div>
-                <div class="form-grup">
-                    <label for="username">Usuari</label>
-                    <input type="text" class="form-control"  id="user" name="user" required maxlength="30" placeholder="El tenu nom d'usuari"
-                           value="{{old('user')}}"/>
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" id="email" name="email"
+                           placeholder="myemail@example.com"
+                           value="{{ old('email') }}"
+                           required>
                 </div>
-                <div class="form-grup">
-                    <label for="email">Correu</label>
-                    <input type="email" class="form-control"  id="email" name="email" requiredç
-                           placeholder="Correu"
-                           value="{{old('email')}}"/>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
                 </div>
-                <div class="form-grup">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control"  id="password" name="password" required maxlength="20"
-                           placeholder="Contrasenya"
-                    />
-                </div>
-                <div class="form-grup">
-                    <label for="password_confirmation">Confirma Password</label>
-                    <input type="Password" class="form-control"  id="confirmaPassword" name="confirmaPassword" required maxlength="20"
-                           placeholder="Repeteig contrasenya"
-                    />
+                <div class="form-group">
+                    <label for="password_confirmation">Password confirm:</label>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
                 </div>
 
-
-                <button type="submit" id="login" class="btn btn-primary">Register</button>
-                <button id="reset" class="btn btn-primary">Reset</button>
-
+                <button id="login" type="submit" class="btn btn-default">Register</button>
+                <button type="reset" class="btn btn-default">Reset</button>
             </form>
         </div>
 

@@ -1,8 +1,12 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class DatabaseSeeder
+ */
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,8 +18,22 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
+        //$this->call(seedUserTable::class);
+        $this->seedUserTable();
 
         Model::reguard();
+    }
+
+    /**
+     * omplir taula user
+     */
+    private function seedUserTable(){
+
+        $user = new User();
+        $user->name = 'Oscar Duran';
+        $user->password = bcrypt(env('PASSWORD_ESTIMAT','123456'));
+        $user->email = 'oscarduran@iesebre.com';
+        $user->save();
+
     }
 }
