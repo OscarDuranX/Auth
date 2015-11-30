@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class ApiController extends Controller
 {
@@ -15,7 +13,7 @@ class ApiController extends Controller
     {
         //$email = Input::get('email');
         $email = $request->get('email');
-        \Debugbar::info("comprova email" . $email);
+        //\Debugbar::info("comprova email" . $email);
 
         if($this->checkEmail($email)){
             return "true";

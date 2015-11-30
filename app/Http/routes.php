@@ -11,8 +11,33 @@
 |
 */
 
+Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/carrot','CarrotController@getCarrot');
+    Route::get('/resource', ['as' => 'patata',  function(){
+            return view('resource');
+        }]
+    );
+
+    Route::get('/resource', ['as' => 'resource',  function(){
+            return view('resource');
+        }]
+    );
+
+    Route::get('/home',
+        [
+            'as' => 'auth.home',
+            function () { return view('home'); }
+        ]);
+    Route::get('/phpinfo',
+            function () { return phpinfo(); }
+        );
+
+
+});
+
+
+
+
 
 
 Route::get(/**
@@ -22,21 +47,17 @@ Route::get(/**
     return view('welcome');
 });
 
-Route::get('/home',
-    [
-        'as' => 'auth.home',
-        function () { return view('home'); }
-    ]);
 
-Route::get('/login',
-    [
-        'as' => 'auth.login' ,
-        'uses' => 'LoginController@getLogin'
-    ]);
 
-Route::post('/postLogin',[
-    'as' => 'auth.postLogin' ,
-    'uses' => 'LoginController@postLogin']);
+//Route::get('/login',
+//    [
+//        'as' => 'auth.login' ,
+//        'uses' => 'LoginController@getLogin'
+//    ]);
+
+//Route::post('/postLogin',[
+//    'as' => 'auth.postLogin' ,
+//    'uses' => 'LoginController@postLogin']);
 
 Session::get('authenticate');
 
@@ -46,35 +67,6 @@ Route::get('/forceLogout', function(){
 });
 
 
-
-Route::get('/resource', function (){
-
-    $authenticated= false;
-    //dd(Session::all());
-    //Session::set('authenticated', false);
-    // \Debugbar::starMeasure("pepito1");
-   // \Debugbar::info("Xivato 1!!");
-  //  \Debugbar::info(Session::all());
-//    if(Session::has('authenticated')) {
-//        if(Session::get('authenticated') ==true){
-//            $authenticated = true;
-//        }
-//}
-//
-//
-//    if($authenticated){
-//       // \Debugbar::stopMeasure("pepito1");
-//        return view('resource');
-//    }else{
-//        return redirect()->route('auth.login');
-//    }
-
-    if(Auth::check()){
-        return view('resource');
-    }else{
-        return redirect()->route('auth.login');
-    }
-});
 
 Route::get('/register',['as' => 'auth.register' ,
         'uses' => 'RegisterController@getRegister'
